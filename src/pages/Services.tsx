@@ -55,9 +55,13 @@ const Services = () => {
   return (
     <main className="pt-20">
       {/* Hero Section */}
-      <section className="bg-primary text-primary-foreground py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl">
+      <section className="gradient-primary text-primary-foreground py-20 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-accent rounded-full blur-3xl animate-float"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-3xl animate-fade-in">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Dimensionnement, Expertise & Assistance
             </h1>
@@ -82,22 +86,29 @@ const Services = () => {
             {services.map((service, index) => {
               const Icon = service.icon;
               return (
-                <Card key={index} className="border shadow-md overflow-hidden">
+                <Card 
+                  key={index} 
+                  className="border shadow-soft hover:shadow-glow overflow-hidden transition-all duration-300 hover:-translate-y-1 group"
+                  style={{ animationDelay: `${index * 0.15}s` }}
+                >
                   <div className="grid md:grid-cols-3">
-                    <div className="bg-muted p-8 flex flex-col items-center justify-center text-center">
-                      <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-accent/10 text-accent mb-4">
+                    <div className="gradient-soft p-8 flex flex-col items-center justify-center text-center border-r border-border/50">
+                      <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-accent/20 to-accent/10 text-accent mb-4 group-hover:scale-110 transition-transform duration-300 animate-float" style={{ animationDelay: `${index * 0.5}s` }}>
                         <Icon size={40} />
                       </div>
-                      <CardTitle className="text-2xl mb-3">{service.title}</CardTitle>
+                      <CardTitle className="text-2xl mb-3 group-hover:text-accent transition-colors">{service.title}</CardTitle>
                       <p className="text-muted-foreground">{service.description}</p>
                     </div>
-                    <div className="md:col-span-2 p-8">
-                      <h3 className="text-xl font-semibold mb-6">Prestations détaillées</h3>
+                    <div className="md:col-span-2 p-8 bg-card/50 backdrop-blur-sm">
+                      <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
+                        Prestations détaillées
+                        <div className="h-px flex-1 bg-gradient-to-r from-border to-transparent"></div>
+                      </h3>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         {service.details.map((detail, idx) => (
-                          <div key={idx} className="flex items-start gap-2">
-                            <div className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0" />
-                            <span className="text-muted-foreground">{detail}</span>
+                          <div key={idx} className="flex items-start gap-2 group/item">
+                            <div className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0 group-hover/item:scale-150 transition-transform" />
+                            <span className="text-muted-foreground group-hover/item:text-foreground transition-colors">{detail}</span>
                           </div>
                         ))}
                       </div>
@@ -111,15 +122,19 @@ const Services = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-muted">
-        <div className="container mx-auto px-4 text-center">
+      <section className="py-16 gradient-soft relative overflow-hidden">
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-accent rounded-full blur-3xl animate-float"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 text-center relative z-10">
           <h2 className="text-3xl font-bold mb-4">
             Un projet en cours ?
           </h2>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
             Discutons ensemble de vos besoins et trouvons la solution technique la plus adaptée.
           </p>
-          <Button asChild size="lg" className="bg-accent hover:bg-accent/90">
+          <Button asChild size="lg" className="shadow-glow bg-accent hover:bg-accent-light transition-all hover:scale-105">
             <Link to="/contact">Demander un devis</Link>
           </Button>
         </div>
