@@ -66,23 +66,28 @@ const Realisations = () => {
       </section>
 
       {/* Projects Grid */}
-      <section className="py-20">
+      <section className="py-20 gradient-soft">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
-              <Card key={index} className="border shadow-sm hover:shadow-lg transition-shadow overflow-hidden group">
-                <div className="aspect-video overflow-hidden">
+              <Card 
+                key={index} 
+                className="border shadow-soft hover:shadow-glow transition-all duration-300 overflow-hidden group hover:-translate-y-2"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="aspect-video overflow-hidden relative">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
-                <CardContent className="p-6">
-                  <div className="inline-block px-3 py-1 bg-accent/10 text-accent text-xs font-semibold rounded-full mb-3">
+                <CardContent className="p-6 bg-card/80 backdrop-blur-sm">
+                  <div className="inline-block px-3 py-1 bg-gradient-to-r from-accent/20 to-accent/10 text-accent text-xs font-semibold rounded-full mb-3 border border-accent/20">
                     {project.type}
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+                  <h3 className="text-xl font-semibold mb-2 group-hover:text-accent transition-colors">{project.title}</h3>
                   <p className="text-muted-foreground mb-4 leading-relaxed">
                     {project.description}
                   </p>
@@ -95,9 +100,10 @@ const Realisations = () => {
           </div>
 
           <div className="mt-16 text-center">
-            <div className="bg-muted rounded-lg p-8 max-w-3xl mx-auto">
-              <h2 className="text-2xl font-bold mb-4">Projets sur Mesure</h2>
-              <p className="text-muted-foreground leading-relaxed">
+            <div className="gradient-soft rounded-2xl p-8 max-w-3xl mx-auto shadow-soft border border-border/50 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-accent/5 rounded-full blur-3xl"></div>
+              <h2 className="text-2xl font-bold mb-4 relative z-10">Projets sur Mesure</h2>
+              <p className="text-muted-foreground leading-relaxed relative z-10">
                 Chaque projet est unique et nécessite une approche spécifique. Nous adaptons nos méthodes et nos solutions techniques à vos contraintes et objectifs. N'hésitez pas à nous contacter pour discuter de votre projet.
               </p>
             </div>
