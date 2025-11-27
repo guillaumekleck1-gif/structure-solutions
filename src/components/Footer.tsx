@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <img src={logo} alt="Dynamix Ingénierie" className="h-12 w-auto mb-4 brightness-0 invert" />
+            <img src={logo} alt="Dynamix Ingénierie" className="h-12 w-auto mb-4" />
             <p className="text-sm opacity-90">
               Bureau d'études structure spécialisé en conception, dimensionnement et expertise pour vos ouvrages en béton, métal et bois.
             </p>
