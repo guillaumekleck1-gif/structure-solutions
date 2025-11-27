@@ -28,11 +28,11 @@ const Home = () => {
   return <main>
       {/* Hero Section */}
       <section className="relative min-h-[95vh] flex items-center overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center" style={{
-        backgroundImage: `url(${heroImage})`
+        <div className="absolute inset-0 bg-cover bg-center transition-transform duration-1000" style={{
+        backgroundImage: `url(${heroImage})`,
+        transform: `translateY(${scrollY * 0.5}px) scale(${1 + scrollY * 0.0003})`
       }}>
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/85 to-primary/80" />
-          <div className="absolute inset-0 bg-background/30" />
+          <div className="absolute inset-0 gradient-hero opacity-90" />
         </div>
         
         {/* Animated geometric shapes */}
