@@ -4,94 +4,86 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Building2, ClipboardCheck, Users, ArrowRight, CheckCircle2 } from "lucide-react";
 import heroImage from "@/assets/hero-engineering.jpg";
 import { useEffect, useState } from "react";
-
 const Home = () => {
   const [scrollY, setScrollY] = useState(0);
-
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const expertises = [
-    {
-      icon: Building2,
-      title: "Conception & Dimensionnement",
-      description: "Calculs structurels et dimensionnement d'ouvrages en béton armé, métal et bois selon les normes en vigueur.",
-    },
-    {
-      icon: ClipboardCheck,
-      title: "Expertise Structurelle",
-      description: "Diagnostic, audit et analyse de pathologies sur ouvrages existants avec recommandations techniques détaillées.",
-    },
-    {
-      icon: Users,
-      title: "Assistance & Conseils Techniques",
-      description: "Accompagnement MOA/MOE, suivi de chantier et vérification d'études pour garantir la conformité de vos projets.",
-    },
-  ];
-
-  const benefits = [
-    "Conformité aux normes européennes",
-    "Optimisation technique & économique",
-    "Accompagnement sur mesure",
-    "Délais maîtrisés"
-  ];
-
-  return (
-    <main>
+  const expertises = [{
+    icon: Building2,
+    title: "Conception & Dimensionnement",
+    description: "Calculs structurels et dimensionnement d'ouvrages en béton armé, métal et bois selon les normes en vigueur."
+  }, {
+    icon: ClipboardCheck,
+    title: "Expertise Structurelle",
+    description: "Diagnostic, audit et analyse de pathologies sur ouvrages existants avec recommandations techniques détaillées."
+  }, {
+    icon: Users,
+    title: "Assistance & Conseils Techniques",
+    description: "Accompagnement MOA/MOE, suivi de chantier et vérification d'études pour garantir la conformité de vos projets."
+  }];
+  const benefits = ["Conformité aux normes européennes", "Optimisation technique & économique", "Accompagnement sur mesure", "Délais maîtrisés"];
+  return <main>
       {/* Hero Section */}
       <section className="relative min-h-[95vh] flex items-center overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center transition-transform duration-1000"
-          style={{ 
-            backgroundImage: `url(${heroImage})`,
-            transform: `translateY(${scrollY * 0.5}px) scale(${1 + scrollY * 0.0003})`
-          }}
-        >
+        <div className="absolute inset-0 bg-cover bg-center transition-transform duration-1000" style={{
+        backgroundImage: `url(${heroImage})`,
+        transform: `translateY(${scrollY * 0.5}px) scale(${1 + scrollY * 0.0003})`
+      }}>
           <div className="absolute inset-0 gradient-hero opacity-90" />
         </div>
         
         {/* Animated geometric shapes */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-20 left-10 w-32 h-32 border-2 border-accent/20 rounded-lg rotate-45 animate-float" />
-          <div className="absolute top-40 right-20 w-24 h-24 border-2 border-primary-light/30 rounded-full animate-float" style={{ animationDelay: '0.5s' }} />
-          <div className="absolute bottom-32 left-1/4 w-16 h-16 bg-accent/10 backdrop-blur-sm animate-float" style={{ animationDelay: '1s' }} />
+          <div className="absolute top-40 right-20 w-24 h-24 border-2 border-primary-light/30 rounded-full animate-float" style={{
+          animationDelay: '0.5s'
+        }} />
+          <div className="absolute bottom-32 left-1/4 w-16 h-16 bg-accent/10 backdrop-blur-sm animate-float" style={{
+          animationDelay: '1s'
+        }} />
         </div>
         
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/20" />
         
         <div className="container mx-auto px-4 relative z-10 text-primary-foreground">
           <div className="max-w-4xl">
-            <div className="inline-block mb-4 px-4 py-2 bg-accent/20 backdrop-blur-sm rounded-full text-sm font-medium animate-slide-up border border-accent/30">
-              ✨ Bureau d'Études Structure de Confiance
-            </div>
             
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight animate-slide-up bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-accent-light" style={{ animationDelay: '0.1s' }}>
+            
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight animate-slide-up bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-accent-light" style={{
+            animationDelay: '0.1s'
+          }}>
               Bureau d'Études Structure
               <span className="block text-accent-light mt-2">Béton · Métal · Bois</span>
             </h1>
             
-            <p className="text-xl md:text-3xl mb-6 opacity-95 animate-slide-up font-light" style={{ animationDelay: '0.2s' }}>
+            <p className="text-xl md:text-3xl mb-6 opacity-95 animate-slide-up font-light" style={{
+            animationDelay: '0.2s'
+          }}>
               Conception, optimisation et expertise technique pour vos ouvrages
             </p>
             
-            <p className="text-base md:text-lg mb-8 opacity-90 leading-relaxed max-w-2xl animate-slide-up" style={{ animationDelay: '0.3s' }}>
+            <p className="text-base md:text-lg mb-8 opacity-90 leading-relaxed max-w-2xl animate-slide-up" style={{
+            animationDelay: '0.3s'
+          }}>
               Dynamix Ingénierie est spécialisé dans le dimensionnement, la conception et l'optimisation des structures. Nous accompagnons architectes, maîtres d'œuvre et entreprises dans toutes les phases de leurs projets.
             </p>
 
             {/* Benefits list */}
-            <div className="grid grid-cols-2 gap-3 mb-8 animate-slide-up" style={{ animationDelay: '0.4s' }}>
-              {benefits.map((benefit, index) => (
-                <div key={index} className="flex items-center gap-2 text-sm md:text-base">
+            <div className="grid grid-cols-2 gap-3 mb-8 animate-slide-up" style={{
+            animationDelay: '0.4s'
+          }}>
+              {benefits.map((benefit, index) => <div key={index} className="flex items-center gap-2 text-sm md:text-base">
                   <CheckCircle2 className="text-accent-light flex-shrink-0" size={20} />
                   <span className="opacity-90">{benefit}</span>
-                </div>
-              ))}
+                </div>)}
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-4 animate-slide-up" style={{ animationDelay: '0.5s' }}>
+            <div className="flex flex-col sm:flex-row gap-4 animate-slide-up" style={{
+            animationDelay: '0.5s'
+          }}>
               <Button asChild size="lg" className="shadow-glow bg-accent hover:bg-accent-light text-accent-foreground transition-all hover:scale-105 group">
                 <Link to="/contact">
                   Demander une étude
@@ -134,20 +126,19 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             {expertises.map((expertise, index) => {
-              const Icon = expertise.icon;
-              return (
-                <Card 
-                  key={index} 
-                  className="border-none shadow-soft hover:shadow-glow transition-all duration-500 hover:-translate-y-3 group bg-card/80 backdrop-blur-sm relative overflow-hidden"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
+            const Icon = expertise.icon;
+            return <Card key={index} className="border-none shadow-soft hover:shadow-glow transition-all duration-500 hover:-translate-y-3 group bg-card/80 backdrop-blur-sm relative overflow-hidden" style={{
+              animationDelay: `${index * 0.1}s`
+            }}>
                   {/* Hover gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-accent/0 to-accent/0 group-hover:from-accent/5 group-hover:to-transparent transition-all duration-500" />
                   
                   <CardContent className="pt-10 pb-8 px-6 text-center relative z-10">
                     <div className="relative inline-block mb-6">
                       <div className="absolute inset-0 bg-accent/20 rounded-full blur-xl group-hover:blur-2xl transition-all duration-500 animate-pulse" />
-                      <div className="relative inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-accent/20 to-accent/10 text-accent group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 animate-float" style={{ animationDelay: `${index * 0.3}s` }}>
+                      <div className="relative inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-accent/20 to-accent/10 text-accent group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 animate-float" style={{
+                    animationDelay: `${index * 0.3}s`
+                  }}>
                         <Icon size={36} strokeWidth={2} />
                       </div>
                     </div>
@@ -166,31 +157,32 @@ const Home = () => {
                       </Link>
                     </Button>
                   </CardContent>
-                </Card>
-              );
-            })}
+                </Card>;
+          })}
           </div>
 
           {/* Stats Section */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
-            {[
-              { number: "500+", label: "Projets réalisés" },
-              { number: "15+", label: "Années d'expérience" },
-              { number: "98%", label: "Clients satisfaits" },
-              { number: "24h", label: "Délai de réponse" }
-            ].map((stat, index) => (
-              <div 
-                key={index} 
-                className="text-center p-6 rounded-lg bg-background/50 backdrop-blur-sm border border-border/50 hover:border-accent/50 transition-all duration-300 hover:scale-105 group"
-              >
+            {[{
+            number: "500+",
+            label: "Projets réalisés"
+          }, {
+            number: "15+",
+            label: "Années d'expérience"
+          }, {
+            number: "98%",
+            label: "Clients satisfaits"
+          }, {
+            number: "24h",
+            label: "Délai de réponse"
+          }].map((stat, index) => <div key={index} className="text-center p-6 rounded-lg bg-background/50 backdrop-blur-sm border border-border/50 hover:border-accent/50 transition-all duration-300 hover:scale-105 group">
                 <div className="text-3xl md:text-4xl font-bold text-accent mb-2 group-hover:scale-110 transition-transform">
                   {stat.number}
                 </div>
                 <div className="text-sm text-muted-foreground font-medium">
                   {stat.label}
                 </div>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -199,15 +191,19 @@ const Home = () => {
       <section className="py-24 gradient-primary text-primary-foreground relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-0 w-96 h-96 bg-accent rounded-full blur-3xl animate-float"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent-light rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '0.5s' }}></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent-light rounded-full blur-3xl animate-float" style={{
+          animationDelay: '1s'
+        }}></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/20 rounded-full blur-3xl animate-float" style={{
+          animationDelay: '0.5s'
+        }}></div>
         </div>
         
         {/* Animated grid pattern */}
         <div className="absolute inset-0 opacity-5" style={{
-          backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-          backgroundSize: '50px 50px'
-        }} />
+        backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
+        backgroundSize: '50px 50px'
+      }} />
         
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className="max-w-3xl mx-auto">
@@ -252,8 +248,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-    </main>
-  );
+    </main>;
 };
-
 export default Home;
