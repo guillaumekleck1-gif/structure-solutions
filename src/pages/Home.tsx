@@ -28,9 +28,10 @@ const Home = () => {
   return <main>
       {/* Hero Section */}
       <section className="relative min-h-[95vh] flex items-center overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center transition-transform duration-1000" style={{
+        <div className="absolute inset-0 bg-cover bg-center transition-all duration-700 ease-out" style={{
         backgroundImage: `url(${heroImage})`,
-        transform: `translateY(${scrollY * 0.5}px) scale(${1 + scrollY * 0.0003})`
+        transform: `scale(${1.1 - scrollY * 0.0002}) translateX(${scrollY * 0.1}px)`,
+        filter: `brightness(${1 - scrollY * 0.0005})`
       }}>
           <div className="absolute inset-0 gradient-hero opacity-90" />
         </div>
