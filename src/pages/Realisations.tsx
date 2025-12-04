@@ -1,53 +1,37 @@
+import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import concreteImg from "@/assets/project-concrete.jpg";
-import metalImg from "@/assets/project-metal.jpg";
-import woodImg from "@/assets/project-wood.jpg";
+import { supabase } from "@/integrations/supabase/client";
+import { Loader2 } from "lucide-react";
+
+type Realisation = {
+  id: string;
+  title: string;
+  type: string;
+  description: string;
+  details: string;
+  image_url: string;
+  order_index: number;
+};
 
 const Realisations = () => {
-  const projects = [
-    {
-      title: "Immeuble de Logements Collectifs",
-      type: "Béton Armé",
-      description: "Étude complète d'une structure béton de 6 niveaux avec parking souterrain. Dimensionnement des fondations, voiles, dalles et escaliers.",
-      image: concreteImg,
-      details: "Mission complète : conception, calculs, plans d'exécution",
-    },
-    {
-      title: "Entrepôt Logistique",
-      type: "Structure Métallique",
-      description: "Conception d'une charpente métallique pour entrepôt industriel de 3000 m². Portiques métalliques et pannes en acier.",
-      image: metalImg,
-      details: "Mission : dimensionnement, notes de calcul, plans de détail",
-    },
-    {
-      title: "Extension en Ossature Bois",
-      type: "Structure Bois",
-      description: "Étude structurelle d'une extension résidentielle en ossature bois avec toiture charpente traditionnelle.",
-      image: woodImg,
-      details: "Mission : calculs structure, plans d'exécution",
-    },
-    {
-      title: "Réhabilitation d'un Bâtiment Industriel",
-      type: "Béton & Métal",
-      description: "Expertise et renforcement structurel d'un bâtiment industriel existant pour changement d'usage.",
-      image: concreteImg,
-      details: "Mission : diagnostic, calculs de renforcement, suivi travaux",
-    },
-    {
-      title: "Centre Commercial",
-      type: "Structure Mixte",
-      description: "Étude de structure mixte béton/métal pour centre commercial. Grandes portées et charges d'exploitation importantes.",
-      image: metalImg,
-      details: "Mission : conception, optimisation, assistance technique",
-    },
-    {
-      title: "Maison Individuelle à Ossature Bois",
-      type: "Bois",
-      description: "Conception complète de la structure d'une maison BBC en ossature bois avec isolation renforcée.",
-      image: woodImg,
-      details: "Mission : étude complète, plans d'exécution, métrés",
-    },
-  ];
+  const [projects, setProjects] = useState<Realisation[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loadProjects = async () => {
+      const { data, error } = await supabase
+        .from("realisations")
+        .select("*")
+        .order("order_index", { ascending: true });
+
+      if (!error && data) {
+        setProjects(data);
+      }
+      setIsLoading(false);
+    };
+
+    loadProjects();
+  }, []);
 
   return (
     <main className="pt-20">
@@ -68,19 +52,36 @@ const Realisations = () => {
       {/* Projects Grid */}
       <section className="py-20 gradient-soft">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
+          {isLoading ? (
+            <div className="flex justify-center items-center py-20">
+              <Loader2 className="h-8 w-8 animate-spin text-primary" />
+            </div>
+          ) : projects.length === 0 ? (
+            <div className="text-center py-20">
+              <p className="text-muted-foreground text-lg">
+                Aucune réalisation disponible pour le moment.
+              </p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {projects.map((project, index) => (
               <Card 
                 key={index} 
                 className="border shadow-soft hover:shadow-glow transition-all duration-300 overflow-hidden group hover:-translate-y-2"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="aspect-video overflow-hidden relative">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
+                  {project.image_url ? (
+                    <img
+                      src={project.image_url}
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-muted flex items-center justify-center">
+                      <span className="text-muted-foreground">Aucune image</span>
+                    </div>
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
                 <CardContent className="p-6 bg-card/80 backdrop-blur-sm">
@@ -96,8 +97,9 @@ const Realisations = () => {
                   </p>
                 </CardContent>
               </Card>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
 
           <div className="mt-16 text-center">
             <div className="gradient-soft rounded-2xl p-8 max-w-3xl mx-auto shadow-soft border border-border/50 relative overflow-hidden">
