@@ -1,10 +1,13 @@
+import { useState, useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 import Layout from "./components/Layout";
 import ScrollToTop from "./components/ScrollToTop";
+import LoadingScreen from "./components/LoadingScreen";
 import Home from "./pages/Home";
 import BureauEtudes from "./pages/BureauEtudes";
 import Services from "./pages/Services";
@@ -16,29 +19,56 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <ScrollToTop />
-        <Routes>
-          <Route element={<Layout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/bureau-etudes" element={<BureauEtudes />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/realisations" element={<Realisations />} />
-            <Route path="/contact" element={<Contact />} />
-          </Route>
-          <Route path="/admin-auth" element={<AdminAuth />} />
-          <Route path="/admin" element={<Admin />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasLoaded, setHasLoaded] = useState(false);
+
+  useEffect(() => {
+    // Check if we've already shown the loading screen in this session
+    const hasSeenLoading = sessionStorage.getItem("hasSeenLoading");
+    if (hasSeenLoading) {
+      setIsLoading(false);
+      setHasLoaded(true);
+    }
+  }, []);
+
+  const handleLoadingComplete = () => {
+    sessionStorage.setItem("hasSeenLoading", "true");
+    setIsLoading(false);
+    setHasLoaded(true);
+  };
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <AnimatePresence mode="wait">
+          {isLoading && !hasLoaded && (
+            <LoadingScreen onLoadingComplete={handleLoadingComplete} />
+          )}
+        </AnimatePresence>
+        {(!isLoading || hasLoaded) && (
+          <BrowserRouter>
+            <ScrollToTop />
+            <Routes>
+              <Route element={<Layout />}>
+                <Route path="/" element={<Home />} />
+                <Route path="/bureau-etudes" element={<BureauEtudes />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/realisations" element={<Realisations />} />
+                <Route path="/contact" element={<Contact />} />
+              </Route>
+              <Route path="/admin-auth" element={<AdminAuth />} />
+              <Route path="/admin" element={<Admin />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        )}
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;
