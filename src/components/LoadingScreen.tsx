@@ -19,12 +19,12 @@ const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(timer);
-          setTimeout(() => onCompleteRef.current(), 400);
+          setTimeout(() => onCompleteRef.current(), 200);
           return 100;
         }
-        return prev + 2;
+        return prev + 5;
       });
-    }, 30);
+    }, 25);
 
     return () => clearInterval(timer);
   }, []);
