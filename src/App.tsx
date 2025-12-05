@@ -20,22 +20,14 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const App = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [hasLoaded, setHasLoaded] = useState(false);
-
-  useEffect(() => {
-    // Check if we've already shown the loading screen in this session
-    const hasSeenLoading = sessionStorage.getItem("hasSeenLoading");
-    if (hasSeenLoading) {
-      setIsLoading(false);
-      setHasLoaded(true);
-    }
-  }, []);
+  const [isLoading, setIsLoading] = useState(() => {
+    // Check immediately if we've already shown the loading screen
+    return !sessionStorage.getItem("hasSeenLoading");
+  });
 
   const handleLoadingComplete = () => {
     sessionStorage.setItem("hasSeenLoading", "true");
     setIsLoading(false);
-    setHasLoaded(true);
   };
 
   return (
@@ -44,11 +36,11 @@ const App = () => {
         <Toaster />
         <Sonner />
         <AnimatePresence mode="wait">
-          {isLoading && !hasLoaded && (
-            <LoadingScreen onLoadingComplete={handleLoadingComplete} />
+          {isLoading && (
+            <LoadingScreen key="loading" onLoadingComplete={handleLoadingComplete} />
           )}
         </AnimatePresence>
-        {(!isLoading || hasLoaded) && (
+        {!isLoading && (
           <BrowserRouter>
             <ScrollToTop />
             <Routes>
