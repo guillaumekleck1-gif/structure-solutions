@@ -27,7 +27,7 @@ const Home = () => {
   const benefits = ["Conformité aux normes européennes", "Optimisation technique & économique", "Accompagnement sur mesure", "Délais maîtrisés"];
   return <main>
       {/* Hero Section */}
-      <section className="relative min-h-[95vh] flex items-center overflow-hidden">
+      <section className="relative min-h-[95vh] flex items-center overflow-hidden pt-24 md:pt-0">
         <div className="absolute inset-0 bg-cover bg-center transition-transform duration-1000" style={{
         backgroundImage: `url(${heroImage})`,
         transform: `translateY(${scrollY * 0.5}px) scale(${1 + scrollY * 0.0003})`
