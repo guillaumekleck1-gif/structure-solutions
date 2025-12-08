@@ -3,8 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone, Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -14,8 +15,9 @@ const Contact = () => {
     company: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Basic validation
@@ -31,8 +33,29 @@ const Contact = () => {
       return;
     }
 
-    toast.success("Message envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.");
-    setFormData({ name: "", email: "", phone: "", company: "", message: "" });
+    setIsSubmitting(true);
+
+    try {
+      const { data, error } = await supabase.functions.invoke("send-contact-email", {
+        body: {
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim() || undefined,
+          company: formData.company.trim() || undefined,
+          message: formData.message.trim(),
+        },
+      });
+
+      if (error) throw error;
+
+      toast.success("Message envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.");
+      setFormData({ name: "", email: "", phone: "", company: "", message: "" });
+    } catch (error: any) {
+      console.error("Error sending contact form:", error);
+      toast.error("Une erreur est survenue. Veuillez réessayer ou nous contacter directement par email.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -132,6 +155,7 @@ const Contact = () => {
                         onChange={handleChange}
                         placeholder="Jean Dupont"
                         required
+                        disabled={isSubmitting}
                       />
                     </div>
 
@@ -147,6 +171,7 @@ const Contact = () => {
                         onChange={handleChange}
                         placeholder="jean.dupont@exemple.fr"
                         required
+                        disabled={isSubmitting}
                       />
                     </div>
                   </div>
@@ -163,6 +188,7 @@ const Contact = () => {
                         value={formData.phone}
                         onChange={handleChange}
                         placeholder="06 12 34 56 78"
+                        disabled={isSubmitting}
                       />
                     </div>
 
@@ -176,6 +202,7 @@ const Contact = () => {
                         value={formData.company}
                         onChange={handleChange}
                         placeholder="Nom de votre société"
+                        disabled={isSubmitting}
                       />
                     </div>
                   </div>
@@ -192,11 +219,24 @@ const Contact = () => {
                       placeholder="Décrivez votre projet et vos besoins..."
                       rows={6}
                       required
+                      disabled={isSubmitting}
                     />
                   </div>
 
-                  <Button type="submit" size="lg" className="w-full bg-accent hover:bg-accent/90">
-                    Envoyer la demande
+                  <Button 
+                    type="submit" 
+                    size="lg" 
+                    className="w-full bg-accent hover:bg-accent/90"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Envoi en cours...
+                      </>
+                    ) : (
+                      "Envoyer la demande"
+                    )}
                   </Button>
                 </form>
               </CardContent>
