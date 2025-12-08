@@ -126,9 +126,12 @@ const Contact = () => {
                 <CardTitle>Téléphone</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">
-                  Disponible sur demande
-                </p>
+                <a
+                  href="tel:+33388226663"
+                  className="text-accent hover:underline"
+                >
+                  +33 3 88 22 66 63
+                </a>
               </CardContent>
             </Card>
           </div>
