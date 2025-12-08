@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, MapPin } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import logo from "@/assets/logo.png";
 
 const Footer = () => {
@@ -54,6 +54,15 @@ const Footer = () => {
                   79 rue de la Plaine des Bouchers<br />
                   67100 Strasbourg
                 </p>
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone size={18} className="flex-shrink-0" />
+                <a
+                  href="tel:+33388226663"
+                  className="text-sm opacity-90 hover:opacity-100 transition-opacity"
+                >
+                  +33 3 88 22 66 63
+                </a>
               </div>
               <div className="flex items-center gap-2">
                 <Mail size={18} className="flex-shrink-0" />
