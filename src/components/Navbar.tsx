@@ -56,21 +56,21 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden py-4 border-t border-border">
-            <div className="flex flex-col gap-4">
+          <div className="md:hidden py-6 border-t border-border">
+            <div className="flex flex-col gap-6">
               {navItems.map((item) => (
                 <Link
                   key={item.path}
                   to={item.path}
                   onClick={() => setIsOpen(false)}
-                  className={`text-sm font-medium transition-colors hover:text-primary ${
+                  className={`text-base font-medium transition-colors hover:text-primary py-2 ${
                     isActive(item.path) ? "text-primary" : "text-foreground"
                   }`}
                 >
                   {item.name}
                 </Link>
               ))}
-              <Button asChild className="bg-accent hover:bg-accent/90 w-full">
+              <Button asChild className="bg-accent hover:bg-accent/90 w-full mt-2">
                 <Link to="/contact" onClick={() => setIsOpen(false)}>
                   Demander une étude
                 </Link>
