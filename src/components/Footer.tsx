@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Mail, MapPin, Phone } from "lucide-react";
 import logo from "@/assets/logo.png";
+import trinityLogo from "@/assets/trinity-logo.png";
 
 const Footer = () => {
   return (
@@ -77,8 +78,19 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-primary-foreground/20 text-center text-sm opacity-75">
-          <p>&copy; {new Date().getFullYear()} Dynamix Ingénierie. Tous droits réservés.</p>
+        <div className="mt-12 pt-8 border-t border-primary-foreground/20 text-sm opacity-75">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p>&copy; {new Date().getFullYear()} Dynamix Ingénierie. Tous droits réservés.</p>
+            <a 
+              href="https://trinity-studio.fr" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 hover:opacity-100 transition-opacity"
+            >
+              <span>Site créé par Trinity Studio</span>
+              <img src={trinityLogo} alt="Trinity Studio" className="h-6 w-auto" />
+            </a>
+          </div>
         </div>
       </div>
     </footer>
