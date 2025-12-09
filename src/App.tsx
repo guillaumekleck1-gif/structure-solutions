@@ -21,13 +21,9 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const App = () => {
-  const [isLoading, setIsLoading] = useState(() => {
-    // Check immediately if we've already shown the loading screen
-    return !sessionStorage.getItem("hasSeenLoading");
-  });
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleLoadingComplete = () => {
-    sessionStorage.setItem("hasSeenLoading", "true");
     setIsLoading(false);
   };
 
