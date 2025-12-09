@@ -80,7 +80,12 @@ const Footer = () => {
 
         <div className="mt-12 pt-8 border-t border-primary-foreground/20 text-sm opacity-75">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p>&copy; {new Date().getFullYear()} Dynamix Ingénierie. Tous droits réservés.</p>
+            <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4">
+              <p>&copy; {new Date().getFullYear()} Dynamix Ingénierie. Tous droits réservés.</p>
+              <Link to="/mentions-legales" className="hover:opacity-100 transition-opacity underline">
+                Mentions légales
+              </Link>
+            </div>
             <a 
               href="https://trinity-studio.fr" 
               target="_blank" 
