@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { supabase } from "@/integrations/supabase/client";
 import { Loader2 } from "lucide-react";
 
@@ -16,6 +17,7 @@ type Realisation = {
 const Realisations = () => {
   const [projects, setProjects] = useState<Realisation[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedProject, setSelectedProject] = useState<Realisation | null>(null);
 
   useEffect(() => {
     const loadProjects = async () => {
@@ -67,8 +69,9 @@ const Realisations = () => {
               {projects.map((project, index) => (
               <Card 
                 key={index} 
-                className="border shadow-soft hover:shadow-glow transition-all duration-300 overflow-hidden group hover:-translate-y-2"
+                className="border shadow-soft hover:shadow-glow transition-all duration-300 overflow-hidden group hover:-translate-y-2 cursor-pointer"
                 style={{ animationDelay: `${index * 0.1}s` }}
+                onClick={() => setSelectedProject(project)}
               >
                 <div className="aspect-video overflow-hidden relative">
                   {project.image_url ? (
@@ -82,7 +85,9 @@ const Realisations = () => {
                       <span className="text-muted-foreground">Aucune image</span>
                     </div>
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <span className="text-white font-medium opacity-0 group-hover:opacity-100 transition-opacity">Voir en grand</span>
+                  </div>
                 </div>
                 <CardContent className="p-6 bg-card/80 backdrop-blur-sm">
                   <div className="inline-block px-3 py-1 bg-gradient-to-r from-accent/20 to-accent/10 text-accent text-xs font-semibold rounded-full mb-3 border border-accent/20">
@@ -112,6 +117,31 @@ const Realisations = () => {
           </div>
         </div>
       </section>
+
+      {/* Image Popup Dialog */}
+      <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
+        <DialogContent className="max-w-4xl w-[95vw] p-0 overflow-hidden bg-background/95 backdrop-blur-sm">
+          {selectedProject && (
+            <div className="flex flex-col">
+              {selectedProject.image_url && (
+                <img
+                  src={selectedProject.image_url}
+                  alt={selectedProject.title}
+                  className="w-full max-h-[70vh] object-contain"
+                />
+              )}
+              <div className="p-6">
+                <div className="inline-block px-3 py-1 bg-gradient-to-r from-accent/20 to-accent/10 text-accent text-xs font-semibold rounded-full mb-3 border border-accent/20">
+                  {selectedProject.type}
+                </div>
+                <h3 className="text-2xl font-bold mb-2">{selectedProject.title}</h3>
+                <p className="text-muted-foreground mb-2">{selectedProject.description}</p>
+                <p className="text-sm text-muted-foreground italic">{selectedProject.details}</p>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </main>
   );
 };
