@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FileText, Calculator, Layers, TrendingUp } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 
 const BureauEtudes = () => {
   const missions = [
@@ -26,7 +27,16 @@ const BureauEtudes = () => {
   ];
 
   return (
-    <main className="pt-20">
+    <>
+      <Helmet>
+        <title>Bureau d'Études Structure | Calculs, Plans Coffrage Ferraillage - Dynamix Ingénierie</title>
+        <meta name="description" content="Missions de bureau d'études structure : calculs Eurocodes, études d'exécution, plans coffrage et ferraillage, optimisation technique. Béton, métal, bois à Strasbourg." />
+        <link rel="canonical" href="https://dynamix-ingenierie.fr/bureau-etudes" />
+        <meta property="og:title" content="Bureau d'Études Structure | Dynamix Ingénierie" />
+        <meta property="og:description" content="Calculs structurels, études d'exécution, plans coffrage et ferraillage pour béton armé, métal et bois." />
+        <meta property="og:url" content="https://dynamix-ingenierie.fr/bureau-etudes" />
+      </Helmet>
+      <main className="pt-20">
       {/* Hero Section */}
       <section className="bg-primary text-primary-foreground py-20">
         <div className="container mx-auto px-4">
@@ -108,6 +118,7 @@ const BureauEtudes = () => {
         </div>
       </section>
     </main>
+    </>
   );
 };
 

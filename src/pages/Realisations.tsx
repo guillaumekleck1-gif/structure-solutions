@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { supabase } from "@/integrations/supabase/client";
 import { Loader2 } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 
 type Realisation = {
   id: string;
@@ -36,7 +37,16 @@ const Realisations = () => {
   }, []);
 
   return (
-    <main className="pt-20">
+    <>
+      <Helmet>
+        <title>Réalisations Ingénierie Structure | Projets Béton Métal Bois - Dynamix Ingénierie</title>
+        <meta name="description" content="Découvrez nos réalisations en ingénierie structurelle : projets béton armé, charpentes métalliques, structures bois. Bureau d'études Strasbourg, Alsace." />
+        <link rel="canonical" href="https://dynamix-ingenierie.fr/realisations" />
+        <meta property="og:title" content="Réalisations Ingénierie Structure | Dynamix Ingénierie" />
+        <meta property="og:description" content="Projets et études structurelles en béton, métal et bois réalisés par notre bureau d'études." />
+        <meta property="og:url" content="https://dynamix-ingenierie.fr/realisations" />
+      </Helmet>
+      <main className="pt-20">
       {/* Hero Section */}
       <section className="bg-primary text-primary-foreground py-20">
         <div className="container mx-auto px-4">
@@ -143,6 +153,7 @@ const Realisations = () => {
         </DialogContent>
       </Dialog>
     </main>
+    </>
   );
 };
 
