@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Ruler, Search, Headphones } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Services = () => {
   const services = [
@@ -53,7 +54,16 @@ const Services = () => {
   ];
 
   return (
-    <main className="pt-20">
+    <>
+      <Helmet>
+        <title>Services Ingénierie Structure | Dimensionnement, Expertise - Dynamix Ingénierie</title>
+        <meta name="description" content="Services de dimensionnement, expertise structurelle et assistance technique. Calculs béton armé, métal, bois selon Eurocodes. Bureau d'études Strasbourg." />
+        <link rel="canonical" href="https://dynamix-ingenierie.fr/services" />
+        <meta property="og:title" content="Services Ingénierie Structure | Dynamix Ingénierie" />
+        <meta property="og:description" content="Dimensionnement, expertise et assistance technique pour structures béton, métal et bois." />
+        <meta property="og:url" content="https://dynamix-ingenierie.fr/services" />
+      </Helmet>
+      <main className="pt-20">
       {/* Hero Section */}
       <section className="gradient-primary text-primary-foreground py-20 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
@@ -140,6 +150,7 @@ const Services = () => {
         </div>
       </section>
     </main>
+    </>
   );
 };
 

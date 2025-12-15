@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Mail, MapPin, Phone, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { Helmet } from "react-helmet-async";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -66,7 +67,16 @@ const Contact = () => {
   };
 
   return (
-    <main className="pt-20">
+    <>
+      <Helmet>
+        <title>Contact Bureau d'Études Structure Strasbourg | Dynamix Ingénierie</title>
+        <meta name="description" content="Contactez Dynamix Ingénierie pour vos projets d'ingénierie structurelle. Demandez une étude ou un devis. Bureau d'études structure à Strasbourg, Alsace." />
+        <link rel="canonical" href="https://dynamix-ingenierie.fr/contact" />
+        <meta property="og:title" content="Contact | Dynamix Ingénierie - Bureau d'Études Structure" />
+        <meta property="og:description" content="Demandez une étude structurelle ou un accompagnement technique. Bureau d'études structure à Strasbourg." />
+        <meta property="og:url" content="https://dynamix-ingenierie.fr/contact" />
+      </Helmet>
+      <main className="pt-20">
       {/* Hero Section */}
       <section className="bg-primary text-primary-foreground py-20">
         <div className="container mx-auto px-4">
@@ -248,6 +258,7 @@ const Contact = () => {
         </div>
       </section>
     </main>
+    </>
   );
 };
 

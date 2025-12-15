@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Building2, ClipboardCheck, Users, ArrowRight, CheckCircle2 } from "lucide-react";
 import heroImage from "@/assets/hero-engineering.jpg";
 import { useEffect, useState } from "react";
+
 const Home = () => {
   const [scrollY, setScrollY] = useState(0);
   useEffect(() => {
@@ -25,7 +27,42 @@ const Home = () => {
     description: "Accompagnement MOA/MOE, suivi de chantier et vérification d'études pour garantir la conformité de vos projets."
   }];
   const benefits = ["Conformité aux normes européennes", "Optimisation technique & économique", "Accompagnement sur mesure", "Délais maîtrisés"];
-  return <main>
+  return (
+    <>
+      <Helmet>
+        <title>Bureau d'Études Structure Strasbourg | Dynamix Ingénierie - Béton, Métal, Bois</title>
+        <meta name="description" content="Bureau d'études structure à Strasbourg spécialisé en conception, dimensionnement et expertise structurelle béton armé, métal et bois. Accompagnement MOA/MOE en Alsace." />
+        <link rel="canonical" href="https://dynamix-ingenierie.fr/" />
+        <meta property="og:title" content="Bureau d'Études Structure Strasbourg | Dynamix Ingénierie" />
+        <meta property="og:description" content="Conception, dimensionnement et expertise structurelle en béton, métal et bois. Bureau d'études structure à Strasbourg, Alsace." />
+        <meta property="og:url" content="https://dynamix-ingenierie.fr/" />
+        <meta property="og:type" content="website" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ProfessionalService",
+            "name": "Dynamix Ingénierie",
+            "description": "Bureau d'études structure spécialisé en conception, dimensionnement et expertise structurelle béton, métal et bois",
+            "url": "https://dynamix-ingenierie.fr",
+            "telephone": "+33388226663",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "79 rue de la Plaine des Bouchers",
+              "addressLocality": "Strasbourg",
+              "postalCode": "67100",
+              "addressCountry": "FR"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": "48.5568",
+              "longitude": "7.7506"
+            },
+            "areaServed": ["Alsace", "Strasbourg", "Grand Est", "France"],
+            "serviceType": ["Dimensionnement structure", "Expertise structurelle", "Calcul béton armé", "Charpente métallique", "Structure bois"]
+          })}
+        </script>
+      </Helmet>
+      <main>
       {/* Hero Section */}
       <section className="relative min-h-[95vh] flex items-center overflow-hidden pt-24 md:pt-0">
         <div className="absolute inset-0 bg-cover bg-center transition-transform duration-1000" style={{
@@ -248,6 +285,8 @@ const Home = () => {
           </div>
         </div>
       </section>
-    </main>;
+    </main>
+    </>
+  );
 };
 export default Home;
