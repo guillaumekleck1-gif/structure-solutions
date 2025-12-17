@@ -1,6 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { FileText, Calculator, Layers, TrendingUp } from "lucide-react";
+import { FileText, Calculator, Layers, TrendingUp, ArrowRight } from "lucide-react";
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const BureauEtudes = () => {
   const missions = [
@@ -45,7 +47,7 @@ const BureauEtudes = () => {
               Nos Missions de Bureau d'Études Structure
             </h1>
             <p className="text-xl opacity-95 leading-relaxed">
-              Dynamix Ingénierie assure l'ensemble des missions d'ingénierie structurelle, de la phase conception jusqu'à la réalisation de vos ouvrages. Notre expertise couvre tous les matériaux : béton armé, structures métalliques et ouvrages bois.
+              Dynamix Ingénierie assure l'ensemble des missions d'ingénierie structurelle, de la phase conception jusqu'à la réalisation de vos ouvrages. Découvrez nos <Link to="/services" className="underline hover:opacity-100 transition-opacity">services de dimensionnement et expertise</Link>. Notre expertise couvre tous les matériaux : béton armé, structures métalliques et ouvrages bois.
             </p>
           </div>
         </div>
@@ -57,10 +59,10 @@ const BureauEtudes = () => {
           <div className="max-w-4xl mx-auto mb-12">
             <h2 className="text-3xl font-bold mb-6">Notre Métier</h2>
             <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-              En tant que bureau d'études structure, nous intervenons sur l'ensemble du cycle de vie de vos projets de construction ou de rénovation. Nous travaillons en étroite collaboration avec les architectes, maîtres d'ouvrage, promoteurs et entreprises générales pour garantir la faisabilité technique et la sécurité structurelle de chaque ouvrage.
+              En tant que bureau d'études structure, nous intervenons sur l'ensemble du cycle de vie de vos projets de construction ou de rénovation. Nous travaillons en étroite collaboration avec les architectes, maîtres d'ouvrage, promoteurs et entreprises générales pour garantir la faisabilité technique et la sécurité structurelle de chaque ouvrage. Consultez nos <Link to="/realisations" className="text-accent hover:text-accent-light underline transition-colors">projets réalisés</Link> pour découvrir notre expertise.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Notre rôle est d'assurer que chaque élément porteur soit correctement dimensionné, que les charges soient reprises efficacement, et que l'ensemble respecte les normes de construction en vigueur (Eurocodes, DTU, règlements parasismiques).
+              Notre rôle est d'assurer que chaque élément porteur soit correctement dimensionné, que les charges soient reprises efficacement, et que l'ensemble respecte les normes de construction en vigueur (Eurocodes, DTU, règlements parasismiques). Découvrez nos <Link to="/services" className="text-accent hover:text-accent-light underline transition-colors">prestations détaillées</Link>.
             </p>
           </div>
 
@@ -113,6 +115,25 @@ const BureauEtudes = () => {
                   <li>• CLT</li>
                 </ul>
               </div>
+            </div>
+          </div>
+
+          {/* CTA Section */}
+          <div className="mt-16 text-center p-8 rounded-lg gradient-soft">
+            <h3 className="text-2xl font-bold mb-4">Besoin d'une étude structurelle ?</h3>
+            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+              Contactez-nous pour discuter de votre projet. Notre équipe vous accompagne de la conception à la réalisation.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button asChild size="lg" className="shadow-glow bg-accent hover:bg-accent-light transition-all hover:scale-105 group">
+                <Link to="/contact" className="flex items-center gap-2">
+                  Demander une étude
+                  <ArrowRight className="group-hover:translate-x-1 transition-transform" size={18} />
+                </Link>
+              </Button>
+              <Button asChild size="lg" variant="outline">
+                <Link to="/realisations">Voir nos réalisations</Link>
+              </Button>
             </div>
           </div>
         </div>
