@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Building2, ClipboardCheck, Users, ArrowRight, CheckCircle2 } from "lucide-react";
 import heroImage from "@/assets/hero-engineering.jpg";
 import { useEffect, useState } from "react";
+import AnimatedStat from "@/components/AnimatedStat";
 
 const Home = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -200,26 +201,10 @@ const Home = () => {
 
           {/* Stats Section */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
-            {[{
-            number: "500+",
-            label: "Projets réalisés"
-          }, {
-            number: "15+",
-            label: "Années d'expérience"
-          }, {
-            number: "98%",
-            label: "Clients satisfaits"
-          }, {
-            number: "24h",
-            label: "Délai de réponse"
-          }].map((stat, index) => <div key={index} className="text-center p-6 rounded-lg bg-background/50 backdrop-blur-sm border border-border/50 hover:border-accent/50 transition-all duration-300 hover:scale-105 group">
-                <div className="text-3xl md:text-4xl font-bold text-accent mb-2 group-hover:scale-110 transition-transform">
-                  {stat.number}
-                </div>
-                <div className="text-sm text-muted-foreground font-medium">
-                  {stat.label}
-                </div>
-              </div>)}
+            <AnimatedStat end={500} suffix="+" label="Projets réalisés" duration={2000} />
+            <AnimatedStat end={15} suffix="+" label="Années d'expérience" duration={1500} />
+            <AnimatedStat end={98} suffix="%" label="Clients satisfaits" duration={1800} />
+            <AnimatedStat end={24} suffix="h" label="Délai de réponse" duration={1200} />
           </div>
         </div>
       </section>
