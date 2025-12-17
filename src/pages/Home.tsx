@@ -105,7 +105,7 @@ const Home = () => {
             <p className="text-base md:text-lg mb-8 opacity-90 leading-relaxed max-w-2xl animate-slide-up" style={{
             animationDelay: '0.3s'
           }}>
-              Dynamix Ingénierie est spécialisé dans le dimensionnement, la conception et l'optimisation des structures. Nous accompagnons architectes, maîtres d'œuvre et entreprises dans toutes les phases de leurs projets.
+              Dynamix Ingénierie est spécialisé dans le <Link to="/services" className="underline hover:text-accent-light transition-colors">dimensionnement</Link>, la conception et l'optimisation des structures. Notre <Link to="/bureau-etudes" className="underline hover:text-accent-light transition-colors">bureau d'études</Link> accompagne architectes, maîtres d'œuvre et entreprises dans toutes les phases de leurs projets.
             </p>
 
             {/* Benefits list */}
@@ -281,6 +281,9 @@ const Home = () => {
                 <span>•</span>
                 <span>Collectivités</span>
               </div>
+              <p className="text-sm opacity-75 mt-6">
+                <Link to="/realisations" className="underline hover:opacity-100 transition-opacity">Découvrez nos réalisations</Link> ou <Link to="/bureau-etudes" className="underline hover:opacity-100 transition-opacity">en savoir plus sur notre bureau d'études</Link>
+              </p>
             </div>
           </div>
         </div>

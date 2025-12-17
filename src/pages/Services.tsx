@@ -76,7 +76,7 @@ const Services = () => {
               Dimensionnement, Expertise & Assistance
             </h1>
             <p className="text-xl opacity-95 leading-relaxed">
-              Ingénieurs spécialisés en calcul, expertise structurelle et assistance technique pour ouvrages béton, métal et bois. Une approche rigoureuse et des solutions adaptées à chaque projet.
+              Ingénieurs spécialisés en calcul, expertise structurelle et assistance technique pour ouvrages béton, métal et bois. Une approche rigoureuse et des solutions adaptées à chaque projet. Découvrez également <Link to="/bureau-etudes" className="underline hover:opacity-100 transition-opacity">nos missions de bureau d'études</Link>.
             </p>
           </div>
         </div>
@@ -142,11 +142,16 @@ const Services = () => {
             Un projet en cours ?
           </h2>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Discutons ensemble de vos besoins et trouvons la solution technique la plus adaptée.
+            Discutons ensemble de vos besoins et trouvons la solution technique la plus adaptée. Consultez nos <Link to="/realisations" className="text-accent hover:text-accent-light underline transition-colors">réalisations</Link> pour découvrir notre savoir-faire.
           </p>
-          <Button asChild size="lg" className="shadow-glow bg-accent hover:bg-accent-light transition-all hover:scale-105">
-            <Link to="/contact">Demander un devis</Link>
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button asChild size="lg" className="shadow-glow bg-accent hover:bg-accent-light transition-all hover:scale-105">
+              <Link to="/contact">Demander un devis</Link>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="border-border hover:bg-background/50 transition-all">
+              <Link to="/realisations">Voir nos réalisations</Link>
+            </Button>
+          </div>
         </div>
       </section>
     </main>
