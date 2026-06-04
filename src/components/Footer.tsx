@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Mail, MapPin, Phone } from "lucide-react";
 import logo from "@/assets/logo.png";
-import trinityLogo from "@/assets/trinity-logo.png";
+
 
 const Footer = () => {
   return (
