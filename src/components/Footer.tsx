@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Mail, MapPin, Phone } from "lucide-react";
 import logo from "@/assets/logo.png";
-import trinityLogo from "@/assets/trinity-logo.png";
+
 
 const Footer = () => {
   return (
@@ -87,13 +87,12 @@ const Footer = () => {
               </Link>
             </div>
             <a 
-              href="https://trinity-studio.fr" 
+              href="https://digkal-web.fr" 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center gap-2 hover:opacity-100 transition-opacity"
             >
-              <span>Site créé par Trinity Studio</span>
-              <img src={trinityLogo} alt="Trinity Studio" className="h-6 w-auto" />
+              <span>Site créé par digkal-web.fr</span>
             </a>
           </div>
         </div>
