@@ -87,12 +87,12 @@ const Footer = () => {
               </Link>
             </div>
             <a 
-              href="https://digkal-web.fr" 
+              href="https://www.digkal-web.fr" 
               target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 hover:opacity-100 transition-opacity"
+              rel="noopener"
+              className="flex items-center gap-2 hover:opacity-100 transition-opacity underline"
             >
-              <span>Site créé par digkal-web.fr</span>
+              <span>Site créé par www.digkal-web.fr</span>
             </a>
           </div>
         </div>
